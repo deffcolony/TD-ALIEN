@@ -1,0 +1,4 @@
+name = A L I E N 
+author = tislericsm, Deffcolony
+description = HOW TO USE: Once you are playing, hit the pause button and look for the Spawn option at the bottom. Click this to find a menu of available items and choose which one you want to put in the game.
+tags=

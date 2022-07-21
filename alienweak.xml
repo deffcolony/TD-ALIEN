@@ -1,0 +1,110 @@
+<prefab version="1.1.0">
+	<group name="instance=MOD/alienweak.xml" pos="23.7 0.1 -34.8" rot="0.0 0.0 0.0">
+		<script pos="0.1 0.0 0.2" file="MOD/script/alienweak.lua" param0="type=investigate chase">
+			<body name="body" tags="body" pos="-0.05 1.2 0.0" rot="0.0 0.0 0.0" dynamic="true">
+				<vox pos="0.05 -0.1 0.08" rot="30 -180.0 0.0" texture="12" density="35" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="abody">
+					<group pos="0.0 -0.05 -0.45" rot="-10 0 0">
+						<vox tags="nocull" pos="0.0 0.1 0.0" texture="6" density="0.1" strength="9999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="afarok1">
+							<joint pos="0.05 0.1 0.2" rot="90 90 0" type="hinge" rotstrength="999999999999999999999999999999999999999999999999999999999999999999999999999999999999999" rotspring="0.1" limits="-1 1"/>
+						</vox>
+						<vox tags="nocull" pos="0.0 0.07 -0.35" rot="-10 0 0" texture="6" density="0.08" strength="9999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="afarok1">
+							<joint pos="0.05 0.1 0.2" rot="90 90 0 " type="hinge" rotstrength="100000000000000000000000000" rotspring="0.5" limits="-1 1"/>
+						</vox>
+						<vox tags="nocull" pos="0.0 -0.17 -1.0" rot="-30 0 0" texture="6" density="0.04" strength="9999999999999999999999999999" prop="true" file="MOD/robot/mech-guns.vox" object="afarok1">
+							<joint pos="0.05 0.1 0.2" rot="90 90 0 " type="hinge" rotstrength="100000000000000000000000000" rotspring="0.9" limits="-1 1"/>
+						</vox>
+						<vox tags="nocull" pos="0.0 -0.03 -0.7" rot="-20 0 0" texture="6" density="0.06" strength="9999999999999999999999999999" prop="true" file="MOD/robot/mech-guns.vox" object="afarok1">
+							<joint pos="0.05 0.1 0.2" rot="90 90 0" type="hinge" rotstrength="100000000000000000000000000" rotspring="0.9" limits="-1 1"/>
+						</vox>
+						<vox tags="nocull" pos="0.0 -0.37 -1.3" rot="-40 0 0" texture="6" density="0.02" strength="9999999999999999999999999999" prop="true" file="MOD/robot/mech-guns.vox" object="afarok1">
+							<joint pos="0.05 0.1 0.2" rot="90 90 0" type="hinge" rotstrength="100000000000000000000000000" rotspring="0.9" limits="-1 1 "/>
+						</vox>
+						<vox tags="nocull" pos="0.0 -0.6 -1.53" rot="-50 0 0" texture="6" density="0.01" strength="9999999999999999999999999999" prop="true" file="MOD/robot/mech-guns.vox" object="afarok1">
+							<joint pos="0.05 0.1 0.2" rot="0 90 0" type="hinge" rotstrength="100000000000000000000000000" rotspring="0.9" limits="-1 1 "/>
+						</vox>
+						<vox tags="nocull" pos="0.0 -1.07 -2.1" rot="-30 0 0" texture="6" density="0.006" strength="9999999999999999999999999999" prop="true" file="MOD/robot/mech-guns.vox" object="afarok1">
+							<joint pos="0.05 0.1 0.2" rot="0 90 0" type="hinge" rotstrength="100000000000000000000000000" rotspring="0.9" limits="-1 1 "/>
+						</vox>
+						<vox tags="nocull" pos="0.0 -0.87 -1.8" rot="-40 0 0" texture="6" density="0.008" strength="9999999999999999999999999999" prop="true" file="MOD/robot/mech-guns.vox" object="afarok1">
+							<joint pos="0.05 0.1 0.2" rot="90 90 0" type="hinge" rotstrength="100000000000000000000000000" rotspring="0.9" limits="-1 1 "/>
+						</vox>
+						<vox tags="nocull" pos="0.0 -1.27 -2.87" rot="-10 0 0" texture="6" density="0.004" strength="9999999999999999999999999999" prop="true" file="MOD/robot/mech-guns.vox" object="afarok2">
+							<joint pos="0.05 0.1 0.6" rot="90 90 0" type="hinge" rotstrength="100000000000000000000000000" rotspring="0.9" limits="-1 1 "/>
+						</vox>
+					</group>
+					<vox pos="0.03 0.0 0.0" rot="0 0 45" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="cuc1"/>
+					<vox pos="0.0 0.07 0.0" rot="0 0 -45" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="cuc1"/>
+				</vox>
+			</body>
+			<body name="head" tags="head" pos="0.0 1.3 0.0" rot="0.0 0.0 0.0" dynamic="true">
+				<joint name="head_joint" tags="head" pos="-0.05 0.05 -0.1" rot="-90.0 90.0 0.0" type="hinge" rotstrength="0.1" limits="-50 50"/>
+				<vox pos="0.0 0.15 0.1" rot="30 -180.0 0.0" texture="6" density="0.5" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="atorso2">
+					<light name="eye_area" tags="eye" pos="0.05 0.95 0.8" rot="0.0 0.0 0.0" type="area" color="0.0 0.0 0.0" scale="3" angle="60" size=".3 .1" fogscale="1" sound="MOD/main/snd/alien.ogg 30"/>
+					<vox pos="0.0 0.7 0.2" texture="6 0.5" density="0.1" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="ahead">
+						<group pos="0.1 0.2 0.401">
+							<vox pos="0.0 0.1 0.179" rot="0 90 -33.3" texture="6 0.5" density="0.1" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="cuc1"/>
+							<vox pos="-0.1 0.4 -0.2" rot="0 -90 -116.3" texture="6 0.5" density="0.1" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="cuc2"/>
+						</group>
+						<group tags="f" pos="0.0 0.3 -0.399" rot="0 180 0">
+							<vox pos="0.0 0.0 0.279" rot="0 90 -33.3" texture="6 0.5" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="cuc1"/>
+							<vox pos="-0.1 0.3 -0.1" rot="0 -90 -116.3" texture="6 0.5" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="cuc2"/>
+						</group>
+						<vox tags="target1" pos="0.0 0.1 0.6" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="cuc3"/>
+					</vox>
+					<group pos="0.0 0.1 0.9" rot="40 180 0">
+						<vox pos="-0.55 0.05 0.0" rot="10.0 160.0 18.0" texture="6" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="ahandr"/>
+						<vox pos="0.45 0.05 0.0" rot="10.0 -160.0 -18.0" texture="6" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="ahandl"/>
+					</group>
+					<vox tags="target2" pos="0.0 0.3 0.5" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="cuc3"/>
+				</vox>
+				<body pos="-0.05 -0.75 0.3" rot="0 180 0" dynamic="true">
+					<body pos="0.0 -0.4 -0.1" dynamic="true"/>
+				</body>
+			</body>
+			<body name="guns" tags="aim" pos="0.0 1.3 -0.7" rot="0.0 0.0 0.0" dynamic="true"/>
+			<body name="guns" tags="aim" pos="0.0 1.7 -0.7" rot="0.0 0.0 0.0" dynamic="true">
+				<location name="r_guns_emitter" tags="weapon=fire strength=5" pos="-0.1 -0.05 0.2" rot="-20 0.0 0.0"/>
+			</body>
+			<group name="cables" pos="-0.1 0.9 0.5"/>
+			<group name="r_leg" pos="0.4 -0.1 -0.1">
+				<body name="r_leg" tags="leg" pos="-0.5 0.4 0.1" rot="0.0 0.0 0.0" dynamic="true">
+					<vox tags="nocull" pos="0.35 0.4 -0.4" rot="-35 -180.0 -5" texture="6" density=".25" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="alegupl">
+						<joint name="r_leg_joint" pos="0.0 0.8 -0.05" rot="0.0 90.0 -90" type="hinge" limits="-60 20"/>
+						<vox tags="target3" pos="-0.1 0.3 0.2" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="cuc3"/>
+					</vox>
+				</body>
+				<body name="r_leg2" tags="leg" pos="-0.5 0.4 0.1" rot="0.0 0.0 0.0" dynamic="true">
+					<vox tags="nocull" pos="0.37 0.1 0.1" rot="50 -180.0 -3" texture="6" density=".25" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="alegdownl">
+						<joint name="r_leg_joint" pos="0.0 0.7 -0.05" rot="0.0 90.0 -90" type="hinge" limits="-60 20"/>
+						<vox tags="target6" pos="-0.1 0.3 -0.1" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="cuc3"/>
+					</vox>
+				</body>
+				<body name="r_foot" tags="foot" pos="-0.4 0.1 0.1" rot="0.0 0.0 0.0" dynamic="true">
+					<vox tags="nocull" pos="0.3 0.0 -0.1" rot="0 -180.0 0.0" texture="6" density="0.2" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="afeetl">
+						<joint name="r_foot_joint" pos="0.0 0.35 -0.15" rot="0.0 90.0 -90" type="hinge" limits="-5 75"/>
+					</vox>
+				</body>
+			</group>
+			<group name="l_leg" pos="-0.5 -0.1 -0.1">
+				<body name="l_leg" tags="leg" pos="0.4 0.5 0.1" rot="0.0 0.0 0.0" dynamic="true">
+					<vox tags="nocull" pos="-0.25 0.3 -0.4" rot="-35 -180.0 5" texture="6" density=".25" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="alegupr">
+						<joint name="l_leg_joint" pos="0.0 0.8 -0.05" rot="0.0 90.0 -90" type="hinge" limits="-60 20"/>
+						<vox tags="target4" pos="0.0 0.3 0.2" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="cuc3"/>
+					</vox>
+				</body>
+				<body name="l_leg2" tags="leg" pos="0.4 -0.4 0.1" rot="0.0 0.0 0.0" dynamic="true">
+					<vox tags="nocull" pos="-0.27 0.9 0.1" rot="50 -180.0 3" texture="6" density=".25" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="alegdownr">
+						<joint name="l_leg_joint" pos="0.05 0.7 -0.05" rot="0.0 90.0 -90" type="hinge" limits="-60 20"/>
+						<vox tags="target5" pos="0.0 0.3 -0.1" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="cuc3"/>
+					</vox>
+				</body>
+				<body name="l_foot" tags="foot" pos="0.4 0.1 0.2" rot="0.0 0.0 0.0" dynamic="true">
+					<vox tags="nocull" pos="-0.3 0.0 -0.2" rot="0 -180.0 0.0" texture="6" density="0.2" strength="99999999999999999999999999999999999999999999999999999999" file="MOD/robot/mech-guns.vox" object="afeetr">
+						<joint name="l_foot_joint" pos="0.0 0.35 -0.15" rot="0.0 90.0 -90.0" type="hinge" limits="-5 75"/>
+					</vox>
+				</body>
+			</group>
+		</script>
+	</group>
+</prefab>
+
