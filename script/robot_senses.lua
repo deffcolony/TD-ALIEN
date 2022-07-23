@@ -141,7 +141,7 @@ function headUpdate(dt)
 			if playerVisible and IsPointAffectedByLight(head.eye, pp) then
 				red = true
 				head.alarmTimer = head.alarmTimer + dt
-				PlayLoop(chargeLoop, robot.transform.pos)
+				--PlayLoop(chargeLoop, robot.transform.pos)
 				if head.alarmTimer > head.alarmTime and playerVisible then
 					SetString("hud.notification", "Detected by robot. Alarm triggered.")
 					SetBool("level.alarm", true)
@@ -181,7 +181,7 @@ function headUpdate(dt)
 
 	local vol = clamp(math.abs(angVel)*0.3, 0.0, 1.0)
 	if vol > 0 then
-		PlayLoop(headLoop, robot.transform.pos, vol)
+		--PlayLoop(headLoop, robot.transform.pos, vol)
 	end
 end
 
@@ -189,7 +189,7 @@ end
 ------------------------------------------------------------------------
 
 hearing = {}
-hearing.lastSoundPos = Vec(0, -100, 0)
+hearing.lastSoundPos = Vec(10, -100, 10)
 hearing.lastSoundVolume = 0
 hearing.timeSinceLastSound = 0
 hearing.hasNewSound = false

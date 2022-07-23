@@ -140,3 +140,16 @@ end
 function Vec2D(InputVector)
 	return Vec(InputVector[1],0,InputVector[3])
 end
+
+
+function playVoice(snd, pos, volume, bool)
+	if type(snd) == "table" then
+		PlaySound(snd[math.random(#snd)], pos, volume, bool)
+	else
+		PlaySound(snd, pos, volume, bool)
+	end
+end
+
+function rnd(mi, ma)
+    return math.random(0, 100)/100*(ma-mi)+mi
+end

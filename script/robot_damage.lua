@@ -25,14 +25,20 @@ function handleCommand(cmd)
 end
 
 function hitByExplosion(strength, pos)
+	if not robot.enabled then
+		return
+	end
+	
 	--Explosions smaller than 1.0 are ignored (with a bit of room for rounding errors)
 	if strength > 0.99 then
 		local d = VecDist(pos, robot.bodyCenter)	
 		local f = clamp((1.0 - (d-2.0)/6.0), 0.0, 1.0) * strength
 		if f > 0.2 then
-			robot.stunned = math.max(robot.stunned, f * 4.0)
+			robot.stunned = math.max(robot.stunned, f * 1.0)
 		end
 		
+		ExplosionDamage(f)
+
 		--Give robots an extra push if they are not already moving that much
 		--Unphysical but more fun
 		local maxVel = 7.0
@@ -49,6 +55,7 @@ function hitByExplosion(strength, pos)
 			if velAdd > 0 then
 				v = VecAdd(v, VecScale(dir, velAdd))
 				SetBodyVelocity(b, v)
+				ExplosionSound()
 			end
 		end
 	end
@@ -56,12 +63,17 @@ end
 
 
 function hitByShot(strength, pos, dir)
+	if not robot.enabled then
+		return
+	end
+
 	if VecDist(pos, robot.bodyCenter) < 3 then
 		local hit, point, n, shape = QueryClosestPoint(pos, 0.1)
 		if hit then
 			for i=1, #robot.allShapes do
 				if robot.allShapes[i] == shape then
-					robot.stunned = robot.stunned + 0.2
+					--robot.stunned = robot.stunned + 0.2
+					ShotDamage()
 					return
 				end
 			end

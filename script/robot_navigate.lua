@@ -121,7 +121,7 @@ function navigationUpdate(dt)
 			navigation.path = {}
 		end
 
-		local targetRadius = 1.0
+		local targetRadius = 0.2
 		if GetPlayerVehicle()~=0 then
 			targetRadius = 4.0
 		end

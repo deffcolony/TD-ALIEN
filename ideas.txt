@@ -9,3 +9,5 @@ acid blood
 
 Think about moving hands
 -probably would use one way constraining
+
+robot has issues due to long steps: set up running

@@ -30,7 +30,7 @@ function wheelsUpdate(dt)
 					SetJointMotor(joints[1], angVel, 100)
 				end
 			end
-			PlayLoop(rollLoop, robot.transform.pos, clamp(math.abs(lv)*0.5, 0.0, 1.0))
+			--PlayLoop(rollLoop, robot.transform.pos, clamp(math.abs(lv)*0.5, 0.0, 1.0))
 		end
 	end
 end

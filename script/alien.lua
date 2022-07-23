@@ -84,15 +84,16 @@ If present, robot will start inactive and become activated when player enters tr
 #include "robot_wheels.lua"
 #include "robot_AI.lua"
 #include "robot_testing.lua"
+#include "robot_health.lua"
 ]]
 
 pType = GetStringParam("type", "")
-pSpeed = GetFloatParam("speed", 3.5)
+pSpeed = GetFloatParam("speed", 9.9)
 pTurnSpeed = GetFloatParam("turnspeed", pSpeed)
 
 config = {}
 config.hasVision = false
-config.viewDistance = 25
+config.viewDistance = 150
 config.viewFov = 150
 config.canHearPlayer = false
 config.canSeePlayer = false
@@ -108,7 +109,7 @@ config.visibilityTimer = 0.3 --Time player must be seen to be identified as enem
 config.lostVisibilityTimer = 5.0 --Time player is seen after losing visibility
 config.outline = 13
 config.aimTime = 5.0
-config.maxSoundDist = 100.0
+config.maxSoundDist = 500.0
 config.aggressive = false
 config.stepSound = "m"
 config.practice = false
@@ -189,6 +190,9 @@ robot.playerPos = Vec()
 
 
 function robotInit()
+
+	HealthInit()
+
 	robot.body = FindBody("body")
 	robot.allBodies = FindBodies()
 	robot.allShapes = FindShapes()
@@ -293,12 +297,12 @@ function robotUpdate(dt)
 		local vol
 		vol = clamp(VecLength(GetBodyVelocity(robot.body)) * 0.4, 0.0, 1.0)
 		if vol > 0 then
-			PlayLoop(walkLoop, robot.transform.pos, vol)
+			--PlayLoop(walkLoop, robot.transform.pos, vol)
 		end
 
 		vol = clamp(VecLength(GetBodyAngularVelocity(robot.body)) * 0.4, 0.0, 1.0)
 		if vol > 0 then
-			PlayLoop(turnLoop, robot.transform.pos, vol)
+			--PlayLoop(turnLoop, robot.transform.pos, vol)
 		end
 	end
 end
@@ -325,16 +329,24 @@ function init()
 	if config.stepSound == "s" then nomDist = 5.0 end
 	if config.stepSound == "l" then nomDist = 9.0 end
 	stepSound = LoadSound("robot/step-" .. config.stepSound .. "0.ogg", nomDist)
-	headLoop = LoadLoop("robot/head-loop.ogg", 7.0)
-	turnLoop = LoadLoop("robot/turn-loop.ogg", 7.0)
+	headLoop = LoadLoop("MOD/main/snd/villager/woman.ogg", 7.0)
+	turnLoop = LoadLoop("MOD/main/snd/villager/m3.ogg", 7.0)
 	walkLoop = LoadLoop("robot/walk-loop.ogg", 7.0)
-	rollLoop = LoadLoop("robot/roll-loop.ogg", 7.0)
+	rollLoop = LoadSound("MOD/main/snd/villager/midle2.ogg")
 	chargeLoop = LoadLoop("robot/charge-loop.ogg", 8.0)
-	alertSound = LoadSound("robot/alert.ogg", 9.0)
-	huntSound = LoadSound("robot/hunt.ogg", 9.0)
-	idleSound = LoadSound("robot/idle.ogg", 9.0)
+	alertSound = LoadSound("MOD/main/snd/villager/m1.ogg", 9.0)
+	huntSound = LoadSound("MOD/main/snd/hunt0.ogg", 15.0)
+	idleSound = LoadSound("MOD/main/snd/villager/midle0.ogg")
 	fireLoop = LoadLoop("tools/blowtorch-loop.ogg")
 	disableSound = LoadSound("robot/disable0.ogg")
+
+	crush = LoadSound("MOD/main/snd/bite1.ogg", 9.0)
+	crush2 = LoadSound("MOD/main/snd/bite.ogg", 9.0)
+	insound = LoadSound("MOD/main/snd/in01.ogg", 9.0)
+	swing = LoadSound("MOD/main/snd/swng07.ogg", 9.0)
+    fdeath = LoadSound("MOD/main/snd/ldeath0.ogg", 9.0)
+    pain = LoadSound("MOD/main/snd/pain0.ogg", 9.0)
+	pain2 = LoadSound("MOD/main/snd/fluid.ogg", 9.0)
 end
 
 
@@ -406,7 +418,7 @@ function update(dt)
 	end
 
 	if IsPointInWater(robot.bodyCenter) then
-		PlaySound(disableSound, robot.bodyCenter, 1.0, false)
+		--PlaySound(disableSound, robot.bodyCenter, 1.0, false)
 		for i=1, #robot.allShapes do
 			SetShapeEmissiveScale(robot.allShapes[i], 0)
 		end
@@ -414,7 +426,7 @@ function update(dt)
 		robot.enabled = false
 	end
 	
-	robot.stunned = clamp(robot.stunned - dt, 0.0, 6.0)
+	robot.stunned = clamp(robot.stunned - dt, 0.0, 1000.0)
 	if robot.stunned > 0 then
 		head.seenTimer = 0
 		weaponsReset()
@@ -423,6 +435,7 @@ function update(dt)
 	
 	hoverUpdate(dt)
 	feetUpdate(dt)
+	HealthUpdate(dt)
 	headUpdate(dt)
 	sensorUpdate(dt)
 	aimsUpdate(dt)
@@ -489,6 +502,19 @@ function tick(dt)
 					end
 				end
 			end
+		end
+	end
+
+	if GetPlayerHealth() <= 0 then
+		if not playing then
+			PlaySound(crush, robot.bodyCenter, 10, false)
+			PlaySound(crush2, robot.bodyCenter, 10, false)
+			--PlaySound(swing)
+			playing = true
+		end
+	elseif GetPlayerHealth() >= 0 then
+		if playing then
+			playing = false
 		end
 	end
 end

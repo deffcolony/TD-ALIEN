@@ -21,7 +21,7 @@ function weaponsInit()
 			if not weapon.timeBetweenRounds then weapon.timeBetweenRounds = 1 end
 			if not weapon.chargeTime then weapon.chargeTime = 1.2 end
 			if not weapon.fireCooldown then weapon.fireCooldown = 0.15 end
-			if not weapon.shotsPerRound then weapon.shotsPerRound = 8 end
+			if not weapon.shotsPerRound then weapon.shotsPerRound = 1 end
 			if not weapon.spread then weapon.spread = 0.01 end
 			if not weapon.strength then weapon.strength = 1.0 end
 			if not weapon.maxDist then weapon.maxDist = 100.0 end
@@ -37,6 +37,11 @@ function weaponsInit()
 			weapons[i] = weapon
 		end
 	end
+
+	lightsaber = FindShape("target1")
+	saber = FindJoint("rotate24")
+	target1 = FindShape("target1")
+	body1 = GetShapeBody(target1)
 end
 
 function weaponFire(weapon, pos, dir)
@@ -56,7 +61,7 @@ function weaponFire(weapon, pos, dir)
 	
 	if weapon.type == "gun" then
 		PlaySound(shootSound, pos, 1.0, false)
-		PointLight(pos, 1, 0.8, 0.6, 1.5)
+		PointLight(pos, 1, 0, 0, 20)
 		Shoot(pos, dir, 0, weapon.strength)
 	elseif weapon.type == "rocket" then
 		PlaySound(rocketSound, pos, 1.0, false)
@@ -80,6 +85,8 @@ function weaponEmitFire(weapon, t, amount)
 	end
 	local p = TransformToParentPoint(t, Vec(0, 0, -0.1))
 	local d = TransformToParentVec(t, Vec(0, 0, -1))
+
+	--[[
 	ParticleReset()
 	ParticleTile(5)
 	ParticleColor(1, 1, 0.5, 1, 0.5, 0.2)
@@ -90,6 +97,7 @@ function weaponEmitFire(weapon, t, amount)
 	PointLight(p, 1, 0.8, 0.2, 2*amount)
 	PlayLoop(fireLoop, t.pos, amount)
 	SpawnParticle(p, VecScale(d, 12), 0.5 * amount)
+	]]
 
 	if amount > 0.5 then
 		--Spawn fire
@@ -111,14 +119,17 @@ function weaponEmitFire(weapon, t, amount)
 		--Hurt player
 		local toPlayer = VecSub(GetPlayerCameraTransform().pos, t.pos)
 		local distToPlayer = VecLength(toPlayer)
-		local distScale = clamp(1.0 - distToPlayer / 6.0, 0.0, 1.0)
+		local distScale = clamp(1.0 - distToPlayer / 2.0, 0.0, 1.0)
 		if distScale > 0 then
 			toPlayer = VecNormalize(toPlayer)
-			if VecDot(d, toPlayer) > 0.8 or distToPlayer < 0.5 then
+			if VecDot(d, toPlayer) > 0.2 or distToPlayer < 0.1 then
 				rejectAllBodies(robot.allBodies)
+				SetJointMotor(saber, 0)
 				local hit = QueryRaycast(p, toPlayer, distToPlayer)
-				if not hit or distToPlayer < 0.5 then
-					SetPlayerHealth(GetPlayerHealth() - 0.02 * weapon.strength * amount * distScale)
+				if not hit or distToPlayer < 0.2 then
+					SetPlayerHealth(GetPlayerHealth() - 0.02 * weapon.strength)
+					--SetJointMotor(saber, -15)
+					SetBodyAngularVelocity(body1, Vec(0, -100, 0))
 				end
 			end	
 		end
@@ -180,7 +191,7 @@ function weaponsUpdate(dt)
 			elseif weapon.state == "charge" or weapon.state == "chargesilent" then
 				weapon.chargeTimer = weapon.chargeTimer - dt
 				if weapon.state ~= "chargesilent" then
-					PlayLoop(chargeLoop, t.pos)
+					--PlayLoop(chargeLoop, t.pos)
 				end
 				if weapon.chargeTimer <= 0 then
 					weapon.state = "fire"

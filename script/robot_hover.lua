@@ -104,7 +104,7 @@ function hoverInit()
 	else
 		QueryRequire("physical large")
 		rejectAllBodies(robot.allBodies)
-		local maxDist = 2.0
+		local maxDist = 1.0
 		
 		local hit, dist = QueryRaycast(robot.transform.pos, VecScale(robot.axes[UP], -1), maxDist)
 		if hit then

@@ -177,7 +177,7 @@ function ManageState(dt)
 			stackPush("search")
 			state.nextAction = "done"
 		elseif state.nextAction == "done" then
-			PlaySound(idleSound, robot.bodyCenter, 1.0, false)
+			PlaySound(idleSound, robot.bodyCenter, 0.3, false)
 			stackPop()
 		end	
 	end
@@ -274,7 +274,7 @@ function ManageState(dt)
 		state.timer = state.timer - dt
 		head.dir = VecCopy(robot.dir)
 		if state.timer < 0 then
-			PlaySound(idleSound, robot.bodyCenter, 1.0, false)
+			PlaySound(idleSound, robot.bodyCenter, 0.3, false)
 			stackPop()
 		else
 			state.turnTimer = state.turnTimer - dt
@@ -363,7 +363,7 @@ function ManageState(dt)
 	if not stackHas("hunt") then
 		if hearing.hasNewSound and hearing.timeSinceLastSound < 1.0 then
 			stackClear()
-			PlaySound(alertSound, robot.bodyCenter, 1.0, false)
+			--PlaySound(alertSound, robot.bodyCenter, 1.0, false)
 			local s = stackPush("investigate")
 			s.pos = hearing.lastSoundPos	
 			hearingConsumeSound()
@@ -374,7 +374,7 @@ function ManageState(dt)
 	if config.huntPlayer and not stackHas("hunt") then
 		if config.canSeePlayer and head.canSeePlayer or robot.canSensePlayer then
 			stackClear()
-			PlaySound(huntSound, robot.bodyCenter, 1.0, false)
+			PlaySound(huntSound, robot.bodyCenter, 0.8, false)
 			stackPush("hunt")
 		end
 	end
