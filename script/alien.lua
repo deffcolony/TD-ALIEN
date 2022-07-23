@@ -85,6 +85,7 @@ If present, robot will start inactive and become activated when player enters tr
 #include "robot_AI.lua"
 #include "robot_testing.lua"
 #include "robot_health.lua"
+#include "acid.lua"
 ]]
 
 pType = GetStringParam("type", "")
@@ -321,6 +322,7 @@ function init()
 	navigationInit()
 	hearingInit()
 	stackInit()
+	initAcid()
 
 	patrolLocations = FindLocations("patrol")
 	shootSound = LoadSound("tools/gun0.ogg", 8.0)
@@ -446,6 +448,7 @@ function update(dt)
 	robot.speed = 0
 
 	ManageState(dt)
+	ParticlePhysics()
 end
 
 function tick(dt)

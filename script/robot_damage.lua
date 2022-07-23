@@ -73,7 +73,7 @@ function hitByShot(strength, pos, dir)
 			for i=1, #robot.allShapes do
 				if robot.allShapes[i] == shape then
 					--robot.stunned = robot.stunned + 0.2
-					ShotDamage()
+					ShotDamage(strength)
 					return
 				end
 			end

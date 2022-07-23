@@ -3,7 +3,7 @@
 
 function HealthInit()
     config.maxHealth = 400.0
-    
+
     robot.health = 100.0
     robot.headDamageScale = 3.0
     robot.torsoDamageScale = 1.4
@@ -48,14 +48,17 @@ function ExplosionSound()
 end
 
 
-function ShotDamage()
+function ShotDamage(strength)
 --Take damage
     local damage = strength * 20.0
     if GetShapeBody(shape) == robot.torso then
         damage = damage * robot.torsoDamageScale
     elseif GetShapeBody(shape) == head.body then
         damage = damage * robot.headDamageScale
-    end					
+    end
+
+    GetAcid(GetBodyTransform(robot.body).pos,Vec(0,1,0))
+
     robot.health = robot.health - damage
     robot.stunned = robot.stunned + 0.12
     playVoice(pain, robot.bodyCenter, 0.3, false)
@@ -72,8 +75,8 @@ function ShotDamage()
     ParticleGravity(-8)
     ParticleSticky(0.0, 0.5)
 
-    for i=1,150 do 					
-            SpawnParticle(robot.bodyCenter, Vec(rnd(-5,5), rnd(-3,5), rnd(-5,5)), 4)
+    for i=1,20 do 					
+        SpawnParticle(robot.bodyCenter, Vec(rnd(-5,5), rnd(-3,5), rnd(-5,5)), 4)
     end
     
     ParticleReset()
@@ -88,7 +91,7 @@ function ShotDamage()
     ParticleGravity(-5)
 
     for i=1,3 do 					
-            SpawnParticle(robot.bodyCenter, Vec(rnd(-5,5), rnd(-3,5), rnd(-5,5)), 0.7)
+           SpawnParticle(robot.bodyCenter, Vec(rnd(-5,5), rnd(-3,5), rnd(-5,5)), 0.7)
     end			
 
     
