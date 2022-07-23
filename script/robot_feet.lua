@@ -82,19 +82,19 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 --!!! This is the the main part to change to adjust step characteristics
 --The general shape of the step is adjusted in animation (less important)
-FOOT_SPEED_FACTOR = 1.25 --The feet must move faster than the body for steps to work. This is how much faster they move
-LEG_DIST_FACTOR = 2 --a factor between step size and movement speed, affects general length of steps
+FOOT_SPEED_FACTOR = 2.5 --The feet must move faster than the body for steps to work. This is how much faster they move
+LEG_DIST_FACTOR = 5 --a factor between step size and movement speed, affects general length of steps
 MIN_STEP_DISTANCE = 0.35 --Ideal step position has to be at least this far to initiate step, otherwise there is no reason to take a step
-MAX_STEP_DISTANCE = 1.5
+MAX_STEP_DISTANCE = 1.8
 STEP_HEIGHT_FACTOR = 0.4 --the maximum height of the step depends on the length of the step, and it is much less (steps are pretty flat usually)
-MAX_STEP_TIME = 0.8 --max time a step can take, note there's no min time, the steps can theoretically keep up with any velocity
+MAX_STEP_TIME = 1.2 --max time a step can take, note there's no min time, the steps can theoretically keep up with any velocity
 STEP_OVERLAP_FRACTION = 0.2 --at the end of one step, before fully finishing the step, it can already start a step with the other leg
 --when looking where to step, the prediction starts by calculating where the torso will likely end up, and compared to that where the foot should be
 --However, that way at the end of the step the foot would end up exactly below the torso (does not look good)
 --This factor increases the step distance so that it is forward from the torso at the end of the step
 --if it's too low, the legs tend to lag behind, if too high, they end up being too forward. Ideally this should increase with speed, but that didn't work in practice
-STEP_FORWARD_FACTOR = 1.6 
-UPWARD_OFFSET_FACTOR = 0.3 --when stepping the torso moves upward not just the leg, it moves up this fraction compared to what fraction the leg moves up
+STEP_FORWARD_FACTOR = 2.5
+UPWARD_OFFSET_FACTOR = 0.2 --when stepping the torso moves upward not just the leg, it moves up this fraction compared to what fraction the leg moves up
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 

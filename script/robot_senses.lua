@@ -79,6 +79,7 @@ function headTurnTowards(pos)
 end
 
 function headUpdate(dt)
+	if true then return end
 	local t = GetBodyTransform(head.body)
 	local fwd = TransformToParentVec(t, Vec(0, 0, -1))
 
