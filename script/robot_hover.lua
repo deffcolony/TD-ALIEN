@@ -141,10 +141,10 @@ end
 
 --Keeps the robot always balanced, so the top is facing upright, even when falling
 UPRIGHT_STRENGTH = 1.0	--Spring strength
-UPRIGHT_MAX = 0.1		--Max spring force: at 0.3 it can barely recover from a large angle difference (before weakening)
+UPRIGHT_MAX = 0.3		--Max spring force: at 0.3 it can barely recover from a large angle difference (before weakening)
 UPRIGHT_BASE = 0.1		--Fraction of max spring force to always apply (less springy): At low values it may take longer to reach equilibrium, at high value it's stable
 SPEED_FACTOR = 10   	--affects how fast max angular velocity goes up with angle from upright
-MAX_ANGVEL_UPRIGHT = 2  --max velocity swinging back when far away
+MAX_ANGVEL_UPRIGHT = 3  --max velocity swinging back when far away
 function hoverUpright()
 	local up = VecCross(robot.axes[UP], VecAdd(Vec(0,1,0))) --VecAdd is used sometime effectively to create a copy of the variable rather than a reference
 	axes = {}
