@@ -1,0 +1,11 @@
+deal with swinting left to right being bad for speed
+-maybe there's a separate orientation variable slowly moving toward desired (or current) rotation that is used for movement. 
+
+acid blood
+-check gorefx for normal and such
+-acid from acid gun (one less bad for frames)
+-a lot first then timer for less (how to do timer?)
+
+
+Think about moving hands
+-probably would use one way constraining
