@@ -116,7 +116,6 @@ config.stepSound = "m"
 config.practice = false
 
 PATH_NODE_TOLERANCE = 0.8
-PATH_NODE_TOLERANCE_factor = 1
 
 function configInit()
 	local eye = FindLight("eye")
@@ -325,7 +324,9 @@ function init()
 	stackInit()
 	initAcid()
 
+
 	patrolLocations = FindLocations("patrol")
+	--Robot sounds
 	shootSound = LoadSound("tools/gun0.ogg", 8.0)
 	rocketSound = LoadSound("tools/launcher0.ogg", 7.0)
 	local nomDist = 7.0
@@ -343,6 +344,7 @@ function init()
 	fireLoop = LoadLoop("tools/blowtorch-loop.ogg")
 	disableSound = LoadSound("robot/disable0.ogg")
 
+	--Old alien sounds
 	crush = LoadSound("MOD/main/snd/bite1.ogg", 9.0)
 	crush2 = LoadSound("MOD/main/snd/bite.ogg", 9.0)
 	insound = LoadSound("MOD/main/snd/in01.ogg", 9.0)
@@ -350,6 +352,43 @@ function init()
     fdeath = LoadSound("MOD/main/snd/ldeath0.ogg", 9.0)
     pain = LoadSound("MOD/main/snd/pain0.ogg", 9.0)
 	pain2 = LoadSound("MOD/main/snd/fluid.ogg", 9.0)
+
+	--New Alien sounds
+	Sound_Alert = {}
+	for i = 1,5,1 do
+		Sound_Alert[i]= LoadSound("MOD/sounds/Voice/Threat Aware/ALIEN_Vocal_AngrySnarl_A_HP_0" .. i .. ".ogg")
+	end
+end
+
+function RandomSound(SoundArray,Volume,IsLoop, SoundPos)
+	if IsLoop == nil then IsLoop = false end
+	if SoundPos == nil then
+		SoundPos = robot.navigationCenter
+	end
+
+	CurrentSound = 0
+	CurrentSound = ChooseRandomSoundEffect(SoundArray)
+
+	if IsLoop then
+		PlayLoop(CurrentSound,SoundPos,Volume)
+	else
+		PlaySound(CurrentSound,SoundPos,Volume)
+	end
+	--PlaySound(CurrentSound,nil,100)
+	return CurrentSound
+end
+
+function ChooseRandomSoundEffect(SoundArray)
+	local SoundNo = 0
+	local total = #SoundArray
+
+	if #SoundArray == 1 then 
+		SoundNo = 1 
+	else
+		SoundNo = math.random(1,total)
+	end
+
+	return SoundArray[SoundNo]
 end
 
 

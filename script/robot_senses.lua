@@ -99,6 +99,7 @@ function headUpdate(dt)
 				QueryRejectVehicle(GetPlayerVehicle())
 				if not QueryRaycast(et.pos, toPlayer, distToPlayer, 0, true) then --Not blocked
 					playerVisible = true
+					RandomSound(Sound_Alert,5)
 				end
 			end
 		end
@@ -218,6 +219,7 @@ function hearingUpdate(dt)
 					hearing.lastSoundPos = pos
 					hearing.timeSinceLastSound = 0
 					hearing.hasNewSound = true
+					
 				end
 			end
 		end
