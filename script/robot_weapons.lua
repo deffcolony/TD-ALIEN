@@ -111,7 +111,7 @@ function weaponEmitFire(weapon, t, amount)
 			local hit, dist = QueryRaycast(p, d, 3)
 			if hit then
 				local wp = VecAdd(p, VecScale(d, dist))
-				SpawnFire(wp)
+				--SpawnFire(wp)
 				spawnFireTimer = 1
 			end
 		end
