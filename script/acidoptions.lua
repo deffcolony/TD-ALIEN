@@ -130,7 +130,7 @@ function InitialiseOptions()
 		AcidHoleSize = i
 		UnitFactor[i] = 10
 		Rounding[i] = 0.1 / UnitFactor[i]
-		ConfigDefault = 1.5
+		ConfigDefault = 2.5
 		UiName[i] = "Hole size"
 		TextBox[i] = "How big holes the acid particles make while corroding, measured in radius from center of particle"
 		TextHeight[i] = 3
@@ -155,7 +155,7 @@ function InitialiseOptions()
 		CorrodeSoft = i
 		UnitFactor[i] = 1/60
 		Rounding[i] = 0.1 / UnitFactor[i]
-		ConfigDefault = 200/60
+		ConfigDefault = 60/60
 		UiName[i] = "Corrode soft"
 		TextBox[i] = "How often to corrode soft materials (total soft corrosion is also affected by the medium and hard values)"
 		TextHeight[i] = 3
@@ -180,7 +180,7 @@ function InitialiseOptions()
 		CorrodeMedium = i
 		UnitFactor[i] = 1/60
 		Rounding[i] = 0.1 / UnitFactor[i]
-		ConfigDefault = 400/60
+		ConfigDefault = 120/60
 		UiName[i] = "Corrode medium"
 		TextBox[i] = "How often to corrode medium and soft materials on top of the above setting"
 		TextHeight[i] = 2
@@ -204,7 +204,7 @@ function InitialiseOptions()
 		CorrodeHard = i
 		UnitFactor[i] = 1/60
 		Rounding[i] = 0.1 / UnitFactor[i]
-		ConfigDefault = 800/60
+		ConfigDefault = 240/60
 		UiName[i] = "Corrode hard"
 		TextBox[i] = "How often to corrode all materials including hard ones"
 		TextHeight[i] = 2

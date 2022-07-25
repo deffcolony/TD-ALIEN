@@ -85,13 +85,9 @@ end
 --probably the particles should have special liquid sound
 --in the future it should disappear after a while and then stop making holes
 function GetAcid(shootPoint,AcidDirQuat)
+    local PartSpawnCount = 20
 
-
-
-
-    
-
-                for p = 1 , 100,1 do
+                for p = 1 , PartSpawnCount,1 do
                     if Current > Val[MaxParticles] then 
                         Current = 1
                     end 
@@ -103,10 +99,10 @@ function GetAcid(shootPoint,AcidDirQuat)
                     end
 
                     local maxv = 0
-                    if p < 50 then
+                    if p < PartSpawnCount/2 then
                         maxv = 2    
                     else
-                        if p>90 then
+                        if p>PartSpawnCount*0.9 then
                             maxv = 4
                         else
                             maxv = 1 
