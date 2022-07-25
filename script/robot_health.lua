@@ -63,6 +63,7 @@ function ShotDamage(strength)
     robot.stunned = robot.stunned + 0.12
     playVoice(pain, robot.bodyCenter, 0.3, false)
 
+    --
     ParticleReset()
     ParticleType("smoke")
     ParticleTile(1)
@@ -75,7 +76,7 @@ function ShotDamage(strength)
     ParticleGravity(-8)
     ParticleSticky(0.0, 0.5)
 
-    for i=1,20 do 					
+    for i=1,150 do 					
         SpawnParticle(robot.bodyCenter, Vec(rnd(-5,5), rnd(-3,5), rnd(-5,5)), 4)
     end
     

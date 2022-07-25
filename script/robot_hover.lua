@@ -187,8 +187,8 @@ function hoverGetUp()
 end
 
 --Yaw: turning left and right to follow target
-TURNING_DISTANCE_FACTOR = 0.1 --close to target it turns slow, this number relates to how far of an angle the target needs to be to reach the max turning rate
-TURNING_MAX_ACCELERATION = 0.2 --Related to maximum acceleration for turning, (adding this velocity each frame to reach the ideal velocity, 0.2 from vanilla
+TURNING_DISTANCE_FACTOR = 0.4 --close to target it turns slow, this number relates to how far of an angle the target needs to be to reach the max turning rate
+TURNING_MAX_ACCELERATION = 4 --Related to maximum acceleration for turning, (adding this velocity each frame to reach the ideal velocity, 0.2 from vanilla
 function hoverTurn()
 	local d = VecFacingDifference(robot.axes[FORWARD], robot.dir, robot.axes[RIGHT],Vec(0,1,0))
 	FaceDiff = d --facing difference used later
@@ -207,7 +207,7 @@ end
 --The point chosen here (robot.bodyCenter) on which forces apply, is the point that generally remains fixed and stable
 --as it is the center of mass, the robot is very stable 
 MovementAccelerationForceFactor = 0.2 --related to the max force for sideways acceleration
-MovementAccelerationSpeedFactor = 0.05 --related to max desired speed change for sideways acceleration
+MovementAccelerationSpeedFactor = 3 --related to max desired speed change for sideways acceleration
 function hoverMove()
 	--robot.speed: Basic core speed eg how fast the robot wants to move now
 	--robot.speed is already has speedscale inside: 
@@ -230,7 +230,7 @@ function hoverMove()
 	
 	local f = robot.mass*MovementAccelerationForceFactor * hover.contact
 
-	ConstrainVelocity(robot.body, hover.hitBody, MovementLoc, fwd, speed, -f , f) --reach desired speed forward / backward
+	ConstrainVelocity(robot.body, hover.hitBody, MovementLoc, fwd, speed, -f*5 , f*5) --reach desired speed forward / backward
 	ConstrainVelocity(robot.body, hover.hitBody, MovementLoc, robot.axes[RIGHT], 0, -f , f) --Stop sideways movement
 end
 

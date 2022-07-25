@@ -89,7 +89,7 @@ If present, robot will start inactive and become activated when player enters tr
 ]]
 
 pType = GetStringParam("type", "")
-pSpeed = GetFloatParam("speed", 9.9)
+pSpeed = GetFloatParam("speed", 3)
 pTurnSpeed = GetFloatParam("turnspeed", pSpeed)
 
 config = {}
@@ -103,7 +103,7 @@ config.sensorDist = 5.0
 config.speed = pSpeed
 config.turnSpeed = pTurnSpeed
 config.huntPlayer = false
-config.huntSpeedScale = 1.6
+config.huntSpeedScale = 5
 config.avoidPlayer = false
 config.triggerAlarmWhenSeen = false
 config.visibilityTimer = 0.3 --Time player must be seen to be identified as enemy (ideal condition)
@@ -116,6 +116,7 @@ config.stepSound = "m"
 config.practice = false
 
 PATH_NODE_TOLERANCE = 0.8
+PATH_NODE_TOLERANCE_factor = 1
 
 function configInit()
 	local eye = FindLight("eye")
@@ -435,6 +436,11 @@ function update(dt)
 		return
 	end
 	
+	--robot.speedScale = 1
+	--robot.speed = 0
+	
+	ManageState(dt)
+
 	hoverUpdate(dt)
 	feetUpdate(dt)
 	HealthUpdate(dt)
@@ -444,10 +450,7 @@ function update(dt)
 	weaponsUpdate(dt)
 	hearingUpdate(dt)
 	stackUpdate(dt)
-	robot.speedScale = 1
-	robot.speed = 0
 
-	ManageState(dt)
 	ParticlePhysics()
 end
 

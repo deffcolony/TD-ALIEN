@@ -98,6 +98,8 @@ end
 function ManageState(dt)
     local state = stackTop()
 	
+
+
 	if state.id == "none" then
 		if config.patrol then
 			stackPush("patrol")
@@ -222,7 +224,7 @@ function ManageState(dt)
 			state.headAngle = 0
 			state.headAngleTimer = 0
 		end
-		if robot.distToPlayer < 4.0 then
+		if robot.distToPlayer < 0.3 then
 			robot.dir = VecCopy(robot.dirToPlayer)
 			head.dir = VecCopy(robot.dirToPlayer)
 			robot.speed = 0
@@ -415,4 +417,12 @@ function debugState()
 	DebugWatch("navigation.unblockTimer", navigation.unblockTimer)
 	DebugWatch("navigation.thinkTime", navigation.thinkTime)
 	DebugWatch("GetPathState()", GetPathState())
+
+	--[[
+	if state ~=nil then
+		DebugPrint(state.id)
+	else
+		DebugPrint("nil")
+	end
+	]]
 end

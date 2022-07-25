@@ -1,3 +1,10 @@
+Adjusted bezier (one length to other side and average)
+quadratic, cubic, linear based on remaining points
+less slow down with turn
+how to move along it?
+Player should be offset to the back
+
+
 deal with swinting left to right being bad for speed
 -maybe there's a separate orientation variable slowly moving toward desired (or current) rotation that is used for movement. 
 
