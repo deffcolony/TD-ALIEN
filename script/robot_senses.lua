@@ -98,8 +98,17 @@ function headUpdate(dt)
 			local limit = math.cos(config.viewFov * 0.5 * math.pi / 180)
 
 			if ShotSeenTimer > 0 then ShotSeenTimer = ShotSeenTimer-1 end
+			
+			local InRange = false
+			if VecDot(toPlayer, fwd) > limit then InRange = true end --Player is in front
+			if ShotSeenTimer>0 then InRange = true end --Was shot at
 
-			if VecDot(toPlayer, fwd) > limit or ShotSeenTimer>0 then --In view frustum
+			if distToPlayer<7 then
+				local limit = math.cos(45 * 0.5 * math.pi / 180)
+				if VecDot(toPlayer, VecScale(fwd,-1)) > limit then InRange = true end --noticed by the tail
+			end
+		
+			if InRange then --In view frustum
 				rejectAllBodies(robot.allBodies)
 				QueryRejectVehicle(GetPlayerVehicle())
 				if not QueryRaycast(et.pos, toPlayer, distToPlayer, 0, true) then --Not blocked
