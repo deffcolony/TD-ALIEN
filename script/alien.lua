@@ -459,6 +459,7 @@ function update(dt)
 		return
 	end
 
+	--[[
 	if IsPointInWater(robot.bodyCenter) then
 		--PlaySound(disableSound, robot.bodyCenter, 1.0, false)
 		for i=1, #robot.allShapes do
@@ -467,6 +468,7 @@ function update(dt)
 		SetTag(robot.body, "disabled")
 		robot.enabled = false
 	end
+	]]
 	
 	robot.stunned = clamp(robot.stunned - dt, 0.0, 1000.0)
 	if robot.stunned > 0 then
