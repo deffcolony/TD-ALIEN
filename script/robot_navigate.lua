@@ -191,6 +191,7 @@ function navigationMove(dt)
 						--We're done
 						navigation.path = {}
 						robot.speed = 0
+						
 						return
 					end
 				else

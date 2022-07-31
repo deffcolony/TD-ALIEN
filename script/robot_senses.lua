@@ -7,6 +7,8 @@ sensor.detectFall = 0
 
 
 function sensorInit()
+	ShotSeenTimer = 0 --a timer making sure that it can notice the player when being shot at (not the best)
+	MaxShotSeenTime = 3*60
 end
 
 
@@ -94,7 +96,10 @@ function headUpdate(dt)
 	if config.hasVision and config.canSeePlayer then
 		if distToPlayer < config.viewDistance then	--Within view distance
 			local limit = math.cos(config.viewFov * 0.5 * math.pi / 180)
-			if VecDot(toPlayer, fwd) > limit then --In view frustum
+
+			if ShotSeenTimer > 0 then ShotSeenTimer = ShotSeenTimer-1 end
+
+			if VecDot(toPlayer, fwd) > limit or ShotSeenTimer>0 then --In view frustum
 				rejectAllBodies(robot.allBodies)
 				QueryRejectVehicle(GetPlayerVehicle())
 				if not QueryRaycast(et.pos, toPlayer, distToPlayer, 0, true) then --Not blocked

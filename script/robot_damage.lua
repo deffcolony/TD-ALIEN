@@ -8,6 +8,7 @@ function handleCommand(cmd)
 			local y = tonumber(words[4])
 			local z = tonumber(words[5])
 			hitByExplosion(strength, Vec(x,y,z))
+			
 		end
 	end
 	if #words == 8 then
@@ -20,6 +21,7 @@ function handleCommand(cmd)
 			local dy = tonumber(words[7])
 			local dz = tonumber(words[8])
 			hitByShot(strength, Vec(x,y,z), Vec(dx,dy,dz))
+			
 		end
 	end
 end
@@ -63,6 +65,7 @@ end
 
 
 function hitByShot(strength, pos, dir)
+	ShotSeenTimer = MaxShotSeenTime
 	if not robot.enabled then
 		return
 	end

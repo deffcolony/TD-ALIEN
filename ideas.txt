@@ -2,6 +2,13 @@ jumping:
 randomly try a few things until can get closer, test 5 points if finds something good, then just give it an impulse and constrain orientation (maybe it could be just a special case with hoverupright)
 constrain orientation for a fixed time, maybe while jumping it keeps upright and forward balance,
 need to decide when jumping is needed
+navigation.target --going here
+navigation.path[#navigation.path+1] --points
+function navigationMove(dt) --will add the jumping here
+navigationUpdate(dt)
+
+--need to think about jump height
+later
 
 
 better tail
