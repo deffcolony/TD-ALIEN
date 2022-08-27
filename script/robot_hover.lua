@@ -86,7 +86,7 @@ hover.contact = 0.0
 hover.distTarget = 1.1
 --When the robot is falling / has no ground, footing is not lost immediately, it is lost gradually within this padding distance
 --Distance padding is the distance where hover.contact is gradually lost whnen moving further away from the ground
-hover.distPadding = 0.3
+hover.distPadding = 0.7
 --If the robot is falling / flying, this measures the time since its foot was last on the ground
 --once a long enough time passed without contact, it will try to get up
 hover.timeSinceContact = 0.0
