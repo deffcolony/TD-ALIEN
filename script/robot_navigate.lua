@@ -166,7 +166,7 @@ function navigationMove(dt)
 			end
 		end
 		if navigation.unblock > 0 then
-			robot.speed = -2
+			robot.speed = -0.5
 			navigation.unblock = navigation.unblock - dt
 		else
 			local target = navigation.path[1]
