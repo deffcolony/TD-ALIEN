@@ -170,6 +170,15 @@ function navigationMove(dt)
 			navigation.unblock = navigation.unblock - dt
 		else
 			local target = navigation.path[1]
+
+			--if very close don't recalculate just chase the player
+			if #navigation.path == 1 then
+				local state = stackTop()
+				if state.id == "hunt" then
+				target = VecAdd(GetPlayerTransform().pos, Vec(0, 1, 0))
+				end
+			end
+
 			local dv = VecSub(target, robot.navigationCenter)
 			local distToFirstPathPoint = VecLength(dv)
 			dv[2] = 0
