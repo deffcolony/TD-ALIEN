@@ -206,7 +206,7 @@ end
 --sideways movement
 --The point chosen here (robot.bodyCenter) on which forces apply, is the point that generally remains fixed and stable
 --as it is the center of mass, the robot is very stable 
-MovementAccelerationForceFactor = 0.2 --related to the max force for sideways acceleration
+MovementAccelerationForceFactor = 0.5 --related to the max force for sideways acceleration
 MovementAccelerationSpeedFactor = 3 --related to max desired speed change for sideways acceleration
 function hoverMove()
 	--robot.speed: Basic core speed eg how fast the robot wants to move now
@@ -237,7 +237,7 @@ function hoverMove()
 	
 	local f = robot.mass*MovementAccelerationForceFactor * hover.contact
 
-	ConstrainVelocity(robot.body, hover.hitBody, MovementLoc, fwd, speed, -f*5 , f*5) --reach desired speed forward / backward
+	ConstrainVelocity(robot.body, hover.hitBody, MovementLoc, fwd, speed, -f , f) --reach desired speed forward / backward
 	ConstrainVelocity(robot.body, hover.hitBody, MovementLoc, robot.axes[RIGHT], 0, -f , f) --Stop sideways movement
 end
 
