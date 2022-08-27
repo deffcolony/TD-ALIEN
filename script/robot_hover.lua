@@ -215,7 +215,14 @@ function hoverMove()
 	--robot.speedScale: a factor (1 by default) for the current activity, eg moving 60% faster when chasing, compared to patrolling
 	local MovementLoc = robot.bodyCenter --This is a fixed point around which it pivots, center of mass in vanilla for mblaance
 	local desiredSpeed = robot.speed * robot.speedScale --desired speed, negative backward
-	local fwd = robot.axes[FORWARD]
+	local fwd = robot.dir
+	--local fwd = robot.axes[FORWARD]
+
+	--FaceDiff 0 if no difference, to +-1 backward, from robot.dir
+	local TurningSpeedFactor = 0.3+1-math.abs(FaceDiff)*2
+	TurningSpeedFactor = clamp(TurningSpeedFactor,0,1)
+
+
 	fwd[2] = 0
 	fwd = VecNormalize(fwd)
 	local side = VecCross(Vec(0,1,0), fwd)
@@ -226,7 +233,7 @@ function hoverMove()
 	if 	VectorFacingAwayApproximation5(fwd, VecNormalize(CurrVelocity)) then
 		currSpeed = -1* currSpeed
 	end
-	local speed = currSpeed + clamp(desiredSpeed - currSpeed, -MovementAccelerationSpeedFactor*robot.speedScale, MovementAccelerationSpeedFactor*robot.speedScale)
+	local speed = currSpeed + clamp(desiredSpeed - currSpeed, -MovementAccelerationSpeedFactor*robot.speedScale*TurningSpeedFactor, MovementAccelerationSpeedFactor*robot.speedScale*TurningSpeedFactor)
 	
 	local f = robot.mass*MovementAccelerationForceFactor * hover.contact
 
