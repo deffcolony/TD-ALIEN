@@ -80,6 +80,9 @@ function initAcid()
 
     FirstParticle = 0
     LastParticle = 0
+
+    SwitchOffAcidTimer = -1
+    
 end
 
 --probably the particles should have special liquid sound
@@ -170,9 +173,11 @@ function ParticleSetupAcid(LifeFrac)
 end
 
 function ParticlePhysics()
+    if SwitchOffAcid then return end
     BurnCounter = 0
     local FrameVec = Vec(0,0,0)
     local max = 0
+    FirstParticle = 0
     for CP = 1, Val[MaxParticles],1 do
         if PartLife[CP] > 0 then
             if FirstParticle == 0 then FirstParticle = CP end

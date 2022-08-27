@@ -393,7 +393,14 @@ end
 
 
 function update(dt)
-	if robot.deleted then 
+	
+	if robot.deleted then
+		if SwitchOffAcidTimer == -1 then
+			SwitchOffAcidTimer = Val[ParticleLife]
+		elseif SwitchOffAcidTimer>0 then
+			SwitchOffAcidTimer = SwitchOffAcidTimer-1
+			ParticlePhysics()
+		end
 		return
 	else 
 		if not IsHandleValid(robot.body) then
@@ -406,6 +413,8 @@ function update(dt)
 			robot.deleted = true
 		end
 	end
+
+	ParticlePhysics()
 
 	if IsBodyDynamic(robot.body)==false then return end --pause calculations if another mod freezes time
 
@@ -492,7 +501,7 @@ function update(dt)
 	hearingUpdate(dt)
 	stackUpdate(dt)
 
-	ParticlePhysics()
+	
 end
 
 function tick(dt)

@@ -57,12 +57,18 @@ function ShotDamage(strength)
         damage = damage * robot.headDamageScale
     end
 
-    GetAcid(GetBodyTransform(robot.body).pos,Vec(0,1,0))
-
     robot.health = robot.health - damage
     robot.stunned = robot.stunned + 0.12
     playVoice(pain, robot.bodyCenter, 0.3, false)
 
+
+    GetAcid(GetBodyTransform(robot.body).pos)
+    local AcidFactor = 1
+    if robot.health <=0 then
+        AcidFactor = 3
+        GetAcid(GetBodyTransform(robot.body).pos)
+        GetAcid(GetBodyTransform(robot.body).pos)
+    end
     --
     ParticleReset()
     ParticleType("smoke")
@@ -76,7 +82,7 @@ function ShotDamage(strength)
     ParticleGravity(-8)
     ParticleSticky(0.0, 0.5)
 
-    for i=1,150 do 					
+    for i=1,150*AcidFactor do 					
         SpawnParticle(robot.bodyCenter, Vec(rnd(-5,5), rnd(-3,5), rnd(-5,5)), 4)
     end
     
@@ -91,7 +97,7 @@ function ShotDamage(strength)
     ParticleCollide(0)
     ParticleGravity(-5)
 
-    for i=1,3 do 					
+    for i=1,3*AcidFactor do 					
            SpawnParticle(robot.bodyCenter, Vec(rnd(-5,5), rnd(-3,5), rnd(-5,5)), 0.7)
     end			
 
