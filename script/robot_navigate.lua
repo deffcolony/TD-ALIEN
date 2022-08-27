@@ -175,7 +175,8 @@ function navigationMove(dt)
 			dv[2] = 0
 			local d = VecLength(dv)
 			if distToFirstPathPoint < 2.5 then
-				if d < PATH_NODE_TOLERANCE*clamp(math.abs(FaceDiff)*5,1,3) then
+				--the clamp part makes sure that when it just misses a node by walking past, it won't just go in circles, but ignores it.
+				if d < PATH_NODE_TOLERANCE*clamp(math.abs(FaceDiff)*5,1,3) then 
 					if #navigation.path > 1 then
 						--Measure verticality which should decrease speed
 						local diff = VecSub(navigation.path[2], navigation.path[1])
